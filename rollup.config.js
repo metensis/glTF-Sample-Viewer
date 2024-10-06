@@ -55,6 +55,54 @@ function copyFile(from, to, file, overwrite = false) {
         }
     };
 }
+function copyDir(from, to, overwrite = false, ignore = []) {
+    return {
+        name: 'copy-directory-recursively',
+        generateBundle() {
+            // Function to log messages in yellow
+            const log = msg => console.log('\x1b[36m%s\x1b[0m', msg); // ANSI code 36 is for blue text
+            const err = msg => console.log('\x1b[33m%s\x1b[0m', msg); // ANSI code 33 is for yellow text
+            log(`Copying files Recursively:`);
+
+            if (!fs.existsSync(to)) {
+                fs.mkdirSync(to, { recursive: true });
+            }
+
+            function copyRecursively(srcDir, destDir) {
+                if (!fs.existsSync(destDir)) {
+                    log(`• Creating ${destDir}`);
+                    fs.mkdirSync(destDir, { recursive: true });
+                }
+
+                fs.readdirSync(srcDir).forEach(item => {
+                    const srcPath = path.join(srcDir, item);
+                    const destPath = path.join(destDir, item);
+
+                    // Ignore files/directories if they are in the ignore list
+                    if (ignore.includes(item) || ignore.includes(srcPath)) {
+                        err(`• Ignoring ${scrPath} → ${destPath}`);
+                        return;
+                    }
+
+                    const stats = fs.statSync(srcPath);
+
+                    if (stats.isDirectory()) {
+                        copyRecursively(srcPath, destPath);
+                    } else {
+                        if (fs.existsSync(destPath) && !overwrite) {
+                            err(`• Ignoring copy as file already exist: ${fromFile} → ${toFile}`);
+                            return;
+                        }
+                        log(`• ${srcPath} → ${destPath}`);
+                        fs.copyFileSync(path.resolve(srcPath), path.resolve(destPath));
+                    }
+                });
+            }
+
+            copyRecursively(from, to);
+        }
+    };
+}
 
 export default {
     strictDeprecations: true,
@@ -84,6 +132,7 @@ export default {
         copyFile(".", "./dist", "main.js", true),
         copyFiles("./assets/images", "./dist/assets/images", true),
         copyFiles("./assets/ui", "./dist/assets/ui", true),
+        copyDir("./assets/Models", "./dist/assets/Models", true),
         copyFiles("./glTF-Sample-Renderer/source/libs", "./dist/libs", true),
         copyFiles("./glTF-Sample-Renderer/assets/images", "./dist/assets/images", true),
         replace({
