@@ -1,0 +1,25 @@
+[
+  {
+    "label": "Box",
+    "name": "Box",
+    "screenshot": "screenshot/screenshot.png",
+    "tags": ["core","testing"],
+    "variants": {
+      "glTF": "Box.gltf",
+      "glTF-Binary": "Box.glb",
+      "glTF-Embedded": "Box.gltf",
+      "glTF-Draco": "Box.gltf"
+    }
+  },
+  {
+    "label": "Damaged Helmet",
+    "name": "DamagedHelmet",
+    "screenshot": "screenshot/screenshot.png",
+    "tags": ["core","showcase","testing","video"],
+    "variants": {
+      "glTF": "DamagedHelmet.gltf",
+      "glTF-Binary": "DamagedHelmet.glb",
+      "glTF-Embedded": "DamagedHelmet.gltf"
+    }
+  }
+]
