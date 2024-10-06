@@ -86,7 +86,7 @@ class UIModel
         const inputObservables = getInputObservables(canvas, this.app);
 
         const dropdownGltfChanged = app.modelChanged.pipe(
-            startWith(modelURL === null ? "DamagedHelmet" : null),
+            startWith(modelURL === null ? "Concurrents" : null),
             filter(value => value !== null),
             map(value => {
                 app.flavours = modelPathProvider.getModelFlavours(value);
