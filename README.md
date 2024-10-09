@@ -1,6 +1,15 @@
 glTF Sample Viewer Web App
 ==============================
 
+FJM CODE
+--------
+1. Use ngrok 
+   1. To install on Windows:
+      1. `choco install ngrok`
+      2. Set up an account on [dashboard](https://dashboard.ngrok.io)
+      3. Set up the `ngrok token` in `yaml`
+2. `ngrok http 8000`
+
 [![](../assets/images/BoomBox.jpg)](https://github.khronos.org/glTF-Sample-Viewer-Release/)
 
 This is the official [Khronos glTF 2.0](https://www.khronos.org/gltf/) Sample Viewer using [WebGL](https://www.khronos.org/webgl/): [glTF 2.0 Sample Viewer](https://github.khronos.org/glTF-Sample-Viewer-Release/)

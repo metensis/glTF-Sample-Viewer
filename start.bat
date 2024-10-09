@@ -1,0 +1,6 @@
+@echo off
+echo Starting npm run dev...
+start cmd /c "npm run dev"
+timeout /t 5 /nobreak > nul
+echo Starting ngrok on port 8000 in the background...
+start /b ngrok http 8000 > ngrok.log 2>&1
